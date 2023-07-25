@@ -49,12 +49,12 @@ const ApexChart = () => {
         tooltip: {
             shared: false,
             x: {
-                formatter: function (val: number) {
+                formatter: function (val) {
                     return val
                 }
             },
             y: {
-                formatter: function (val: number) {
+                formatter: function (val) {
                     return Math.abs(val) + "%"
                 }
             }
@@ -71,7 +71,7 @@ const ApexChart = () => {
                 text: 'Percent'
             },
             labels: {
-                formatter: function (val: number) {
+                formatter: function (val) {
                     return Math.abs(Math.round(val)) + "%"
                 }
             }
@@ -80,7 +80,7 @@ const ApexChart = () => {
 
     return (
         <div id="chart">
-            <ReactApexChart options={options} series={series} height={440} />
+            <ReactApexChart options={options} series={series} type="bar" height={440} />
         </div>
     );
 };

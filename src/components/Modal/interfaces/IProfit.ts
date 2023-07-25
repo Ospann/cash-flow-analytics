@@ -1,8 +1,8 @@
 interface IProfit {
   account: string;
-  sum: number;
+  sum: number | null;
   comment: string;
-  date: Date;
+  date: string;
 }
 
 export default IProfit;

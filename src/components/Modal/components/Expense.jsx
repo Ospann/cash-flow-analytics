@@ -3,27 +3,20 @@ import { Autocomplete, Box, Button, FormControl, InputLabel, MenuItem, Select, T
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import classes from '../Modal.module.css';
-import IExpense from '../interfaces/IExpense';
 import { useSelector } from "react-redux";
-import { RootState } from "@store/reducer";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "@store/action";
 import dayjs from 'dayjs';
 import formatDate from '@helpers/formateDate';
 
-interface CategoryOption {
-    label: string;
-    id: number;
-}
-
-const Expense: React.FC = () => {
-    const accounts: string[] = useSelector((state: RootState) => state.accounts);
-    const expenses: string[] = useSelector((state: RootState) => state.expenses);
+const Expense = () => {
+    const accounts = useSelector((state) => state.accounts);
+    const expenses = useSelector((state) => state.expenses);
     const dispatch = useDispatch();
     const currentDate = new Date();
     const formattedDate = formatDate(currentDate);
 
-    const [data, setData] = useState<IExpense>({
+    const [data, setData] = useState({
         account: "",
         sum: null,
         date: formattedDate,
@@ -31,7 +24,7 @@ const Expense: React.FC = () => {
         comment: ""
     });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = (event) => {
         const { name, value } = event.target;
 
         setData((prevData) => ({
@@ -40,7 +33,7 @@ const Expense: React.FC = () => {
         }));
     };
 
-    const categoryChange = (event: React.SyntheticEvent, newValue: CategoryOption | null): void => {
+    const categoryChange = (event, newValue) => {
         if (!newValue) return;
         setData({
             ...data,
@@ -48,14 +41,14 @@ const Expense: React.FC = () => {
         });
     };
 
-    const send = (): void => {
+    const send = () => {
         if (validation()) {
             return;
         }
         dispatch(addTransaction(data));
         setData({
             account: "",
-            sum: null,
+            sum: 0,
             date: "",
             category: "",
             comment: ""

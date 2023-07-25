@@ -1,16 +1,14 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/reducer"; 
-import ITransaction from "../../../store/interfaces/ITransaction";
 
-const PieChart: React.FC = () => {
-    const transactions = useSelector((state: RootState) => state.transactions);
-
+const PieChart = () => {
+    const transactions = useSelector((state) => state.transactions);
+    console.log(transactions)
     const expenseData = useMemo(() => {
-        const expensesMap: { [key: string]: number } = {};
+        const expensesMap = {};
 
-        transactions.forEach((transaction: ITransaction) => {
+        transactions.forEach((transaction) => {
             const { category, sum } = transaction;
             if (expensesMap[category]) {
                 expensesMap[category] += sum;
@@ -22,6 +20,7 @@ const PieChart: React.FC = () => {
             name: category,
             y: sum,
         }));
+        console.log(pieData)
         return pieData;
     }, [transactions]);
 

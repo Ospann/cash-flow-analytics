@@ -4,21 +4,19 @@ import classes from '../Modal.module.css';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import IProfit from '../interfaces/IProfit';
 import { useSelector } from "react-redux";
-import { RootState } from ".@store/reducer";
 
 const Profit = () => {
-    const accounts: string[] = useSelector((state: RootState) => state.accounts);
+    const accounts = useSelector((state) => state.accounts);
 
-    const [data, setData] = useState<IProfit>({
+    const [data, setData] = useState({
         account: "",
         comment: "",
-        sum: null,
+        sum: "",
         date: ""
     });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | { value: unknown }>): void => {
+    const handleChange = (event) => {
         const { name, value } = event.target;
         setData(prevData => ({
             ...prevData,

@@ -4,22 +4,20 @@ import { FormControl, InputLabel, Box, MenuItem, Select, TextField } from '@mui/
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
-import ITransfer from '../interfaces/ITransfet';
 import { useSelector } from "react-redux";
-import { RootState } from "@store/reducer";
 
-const Transfer: React.FC = () => {
-    const accounts: string[] = useSelector((state: RootState) => state.accounts);
+const Transfer = () => {
+    const accounts = useSelector((state) => state.accounts);
 
-    const [data, setData] = useState<ITransfer>({
+    const [data, setData] = useState({
         account: "",
         account2: "",
-        sum: null,
+        sum: "",
         date: "",
         comment: ""
     });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | { value: unknown }>): void => {
+    const handleChange = (event) => {
         const { name, value } = event.target;
         
         setData((prevData) => ({
