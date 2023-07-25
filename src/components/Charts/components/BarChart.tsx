@@ -1,8 +1,7 @@
-import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const ApexChart = () => {
-    const [series, setSeries] = useState([
+    const series = [
         {
             name: 'Males',
             data: [0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3, 4.1, 4.2, 4.5, 3.9, 3.5, 3]
@@ -11,9 +10,9 @@ const ApexChart = () => {
             name: 'Females',
             data: [-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4, -4.1, -4, -4.1, -3.4, -3.1, -2.8]
         }
-    ]);
+    ];
 
-    const [options, setOptions] = useState({
+    const options = {
         chart: {
             type: 'bar',
             height: 440,
@@ -50,12 +49,12 @@ const ApexChart = () => {
         tooltip: {
             shared: false,
             x: {
-                formatter: function (val) {
+                formatter: function (val: number) {
                     return val
                 }
             },
             y: {
-                formatter: function (val) {
+                formatter: function (val: number) {
                     return Math.abs(val) + "%"
                 }
             }
@@ -72,12 +71,12 @@ const ApexChart = () => {
                 text: 'Percent'
             },
             labels: {
-                formatter: function (val) {
+                formatter: function (val: number) {
                     return Math.abs(Math.round(val)) + "%"
                 }
             }
         },
-    });
+    };
 
     return (
         <div id="chart">
